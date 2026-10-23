@@ -998,6 +998,132 @@ VÍDEO INSTITUCIONAL
 </div>
 <!-- FIM DO BOTÃO DE AVALIAÇÕES -->
 
+<a href="ia.html" class="ws-ai-button">
+  <span class="ws-ai-icon">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="4" y="7" width="16" height="13" rx="4"
+        stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 3v4M9 13h.01M15 13h.01M9 17h6"
+        stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round"/>
+      <path d="M2 12h2M20 12h2"
+        stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round"/>
+    </svg>
+  </span>
+
+  <span class="ws-ai-text">
+    <strong>Conhecer a WebStarter AI</strong>
+    <small>Seu parceiro de programação</small>
+  </span>
+
+  <span class="ws-ai-arrow">↗</span>
+</a>
+
+<style>
+.ws-ai-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 19px;
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(125deg, #17132d, #101b35);
+  border: 1px solid #8264ff;
+  border-radius: 17px;
+  box-shadow: 0 0 22px #7652e833,
+              inset 0 0 18px #7652e80d;
+  transition: transform .25s ease,
+              box-shadow .25s ease,
+              border-color .25s ease;
+  overflow: hidden;
+}
+
+.ws-ai-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    100deg, transparent, #ffffff18, transparent
+  );
+  transform: skewX(-20deg);
+  transition: left .65s ease;
+}
+
+.ws-ai-button:hover {
+  transform: translateY(-4px);
+  border-color: #b5a0ff;
+  box-shadow: 0 12px 38px #7652e855,
+              0 0 16px #4b9eff22;
+}
+
+.ws-ai-button:hover::before {
+  left: 150%;
+}
+
+.ws-ai-button:focus-visible {
+  outline: 2px solid #a997ff;
+  outline-offset: 4px;
+}
+
+.ws-ai-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 49px;
+  height: 49px;
+  color: white;
+  border-radius: 14px;
+  background: linear-gradient(140deg, #9b70ff, #477bff);
+  box-shadow: 0 5px 20px #7652e855;
+}
+
+.ws-ai-icon svg {
+  width: 29px;
+  height: 29px;
+}
+
+.ws-ai-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+
+.ws-ai-text strong {
+  font-size: 14px;
+  letter-spacing: .1px;
+}
+
+.ws-ai-text small {
+  color: #aaa9d2;
+  font-size: 11px;
+}
+
+.ws-ai-arrow {
+  margin-left: 5px;
+  color: #bbaaff;
+  font-size: 23px;
+  transition: transform .25s ease;
+}
+
+.ws-ai-button:hover .ws-ai-arrow {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 420px) {
+  .ws-ai-button { gap: 10px; padding: 12px; }
+  .ws-ai-icon { width: 43px; height: 43px; }
+  .ws-ai-text strong { font-size: 12px; }
+  .ws-ai-text small { font-size: 10px; }
+}
+</style>
+
     </main>
 
     <footer>
