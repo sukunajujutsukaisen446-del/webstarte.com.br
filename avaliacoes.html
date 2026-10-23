@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d1b">
+  <title>Avaliações | WEB STARTER</title>
+  <meta name="description" content="Avalie sua experiência com o WEB STARTER.">
+  <style>
+    :root {
+      --bg: #080d1b;
+      --panel: #111a2e;
+      --panel2: #0c1426;
+      --text: #f4f7ff;
+      --muted: #aab5cc;
+      --line: rgba(255,255,255,.11);
+      --blue: #6584ff;
+      --purple: #9c67ff;
+      --gold: #ffc857;
+      --green: #5ee0ae;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(78,105,255,.20), transparent 38%),
+        radial-gradient(ellipse at 95% 20%, rgba(156,103,255,.14), transparent 34%),
+        var(--bg);
+    }
+    a { color: inherit; }
+    .wrap { width: min(1080px, calc(100% - 32px)); margin: auto; }
+    header { border-bottom: 1px solid var(--line); background: rgba(8,13,27,.75); backdrop-filter: blur(14px); }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:76px; }
+    .logo { font-weight: 950; letter-spacing: -.8px; font-size: 22px; }
+    .logo span { color: #8ea2ff; }
+    .back { text-decoration:none; color:var(--muted); font-size:14px; padding:10px 14px; border:1px solid var(--line); border-radius:12px; }
+    .back:hover { color:white; border-color:rgba(142,162,255,.6); }
+    .hero { text-align:center; padding:64px 0 30px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid rgba(142,162,255,.28); background:rgba(101,132,255,.10); color:#c5d0ff; border-radius:999px; font-size:12px; font-weight:800; letter-spacing:.7px; text-transform:uppercase; }
+    h1 { font-size:clamp(34px, 6vw, 56px); letter-spacing:-1.8px; line-height:1.05; margin:20px 0 14px; }
+    h1 span { background:linear-gradient(100deg,#8ea2ff,#c4a0ff); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .intro { color:var(--muted); max-width:620px; margin:0 auto; line-height:1.7; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:30px auto 0; max-width:700px; }
+    .stat { padding:18px 12px; border:1px solid var(--line); border-radius:16px; background:rgba(17,26,46,.65); }
+    .stat strong { display:block; font-size:22px; margin-bottom:5px; }
+    .stat span { color:var(--muted); font-size:12px; }
+    .layout { display:grid; grid-template-columns:minmax(0, .95fr) minmax(0, 1.05fr); gap:20px; align-items:start; padding:24px 0 70px; }
+    .panel { border:1px solid var(--line); border-radius:22px; padding:26px; background:linear-gradient(155deg,rgba(20,31,54,.96),rgba(12,20,38,.96)); box-shadow:0 22px 65px rgba(0,0,0,.20); }
+    .panel h2 { font-size:21px; margin:0 0 8px; letter-spacing:-.4px; }
+    .sub { margin:0 0 24px; color:var(--muted); font-size:13px; line-height:1.6; }
+    label { display:block; font-size:13px; font-weight:750; margin:18px 0 8px; }
+    input, textarea, select { width:100%; color:var(--text); background:#080f20; border:1px solid rgba(255,255,255,.14); border-radius:12px; padding:13px 14px; font:inherit; outline:none; }
+    input:focus, textarea:focus, select:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(101,132,255,.14); }
+    textarea { resize:vertical; min-height:120px; }
+    .stars { display:flex; gap:7px; margin:8px 0 4px; }
+    .star { border:0; padding:0; background:transparent; color:#39435b; cursor:pointer; font-size:36px; line-height:1; transition:transform .15s,color .15s; }
+    .star:hover { transform:translateY(-2px) scale(1.06); }
+    .star.active { color:var(--gold); }
+    .rating-caption { font-size:12px; color:var(--muted); min-height:18px; }
+    .submit { width:100%; margin-top:20px; border:0; border-radius:13px; padding:14px 18px; color:white; font-weight:850; font-size:14px; cursor:pointer; background:linear-gradient(100deg,var(--blue),var(--purple)); box-shadow:0 10px 28px rgba(101,132,255,.22); }
+    .submit:disabled { opacity:.6; cursor:wait; }
+    .notice { display:none; padding:12px 14px; border-radius:12px; margin-top:14px; font-size:13px; line-height:1.5; }
+    .notice.show { display:block; }
+    .notice.ok { color:#baf6df; border:1px solid rgba(94,224,174,.28); background:rgba(94,224,174,.08); }
+    .notice.err { color:#ffd1d1; border:1px solid rgba(255,120,120,.28); background:rgba(255,120,120,.08); }
+    .privacy { color:var(--muted); font-size:11px; line-height:1.6; margin:14px 0 0; }
+    .reviews-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:18px; }
+    .pill { font-size:11px; font-weight:800; color:#c5d0ff; border:1px solid rgba(142,162,255,.25); background:rgba(101,132,255,.10); border-radius:999px; padding:7px 10px; white-space:nowrap; }
+    .review-list { display:grid; gap:12px; }
+    .review { padding:17px; border:1px solid var(--line); border-radius:16px; background:rgba(5,10,22,.38); }
+    .review-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .review-name { font-weight:800; overflow-wrap:anywhere; }
+    .review-date { color:var(--muted); font-size:11px; margin-top:4px; }
+    .review-stars { color:var(--gold); letter-spacing:2px; white-space:nowrap; }
+    .review-comment { margin:13px 0 0; color:#dce3f2; font-size:14px; line-height:1.7; overflow-wrap:anywhere; white-space:pre-wrap; }
+    .review-project { display:inline-block; margin-top:12px; color:#c5d0ff; background:rgba(101,132,255,.10); border-radius:8px; padding:5px 8px; font-size:11px; }
+    .empty { border:1px dashed rgba(255,255,255,.18); padding:28px 18px; border-radius:16px; color:var(--muted); text-align:center; line-height:1.7; font-size:13px; }
+    .empty b { display:block; color:#e6ebf8; font-size:15px; margin-bottom:5px; }
+    footer { border-top:1px solid var(--line); color:var(--muted); font-size:12px; text-align:center; padding:24px 12px 30px; }
+    footer strong { color:#e6ebf8; }
+    @media(max-width:800px) { .layout { grid-template-columns:1fr; } .hero { padding-top:46px; } }
+    @media(max-width:460px) { .wrap { width:min(100% - 22px,1080px); } .panel { padding:19px; border-radius:18px; } .stats { gap:7px; } .stat { padding:14px 6px; } .stat strong { font-size:18px; } .stat span { font-size:10px; } .reviews-head { display:block; } .pill { display:inline-block; margin-top:12px; } .back { font-size:12px; padding:9px 10px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="index.html" aria-label="Voltar à página inicial" style="text-decoration:none">WEB<span>STARTER</span></a>
+      <a class="back" href="index.html">← Voltar ao site</a>
+    </div>
+  </header>
+
+  <section class="hero wrap">
+    <div class="eyebrow">⭐ Sua opinião importa</div>
+    <h1>Conte sua experiência<br>com o <span>WEB STARTER.</span></h1>
+    <p class="intro">Ajude outras pessoas que estão começando na criação de sites. Envie sua avaliação e, depois da aprovação, ela poderá aparecer publicamente nesta página.</p>
+    <div class="stats">
+      <div class="stat"><strong id="reviewCount">—</strong><span>Avaliações publicadas</span></div>
+      <div class="stat"><strong>1 a 5 ⭐</strong><span>Você escolhe a nota</span></div>
+      <div class="stat"><strong>100%</strong><span>Opinião sincera</span></div>
+    </div>
+  </section>
+
+  <main class="wrap layout">
+    <section class="panel">
+      <h2>✍️ Deixe sua avaliação</h2>
+      <p class="sub">Conte o que achou do conteúdo ou da sua experiência com o WEB STARTER.</p>
+      <form id="reviewForm">
+        <label for="name">Seu nome</label>
+        <input id="name" name="name" type="text" minlength="2" maxlength="60" placeholder="Como podemos te chamar?" required autocomplete="name">
+        <label>Sua nota</label>
+        <div class="stars" role="radiogroup" aria-label="Escolha de 1 a 5 estrelas">
+          <button class="star" type="button" data-rating="1" aria-label="1 estrela" aria-checked="false" role="radio">★</button>
+          <button class="star" type="button" data-rating="2" aria-label="2 estrelas" aria-checked="false" role="radio">★</button>
+          <button class="star" type="button" data-rating="3" aria-label="3 estrelas" aria-checked="false" role="radio">★</button>
+          <button class="star" type="button" data-rating="4" aria-label="4 estrelas" aria-checked="false" role="radio">★</button>
+          <button class="star" type="button" data-rating="5" aria-label="5 estrelas" aria-checked="false" role="radio">★</button>
+        </div>
+        <div id="ratingCaption" class="rating-caption">Selecione sua nota.</div>
+        <input id="rating" type="hidden" value="">
+        <label for="comment">Seu comentário</label>
+        <textarea id="comment" name="comment" minlength="5" maxlength="1000" placeholder="Escreva sua opinião com respeito e sinceridade..." required></textarea>
+        <label for="project">O que você avaliou? <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+        <select id="project" name="project">
+          <option value="">Prefiro não especificar</option>
+          <option value="Mini-curso de criação de sites">Mini-curso de criação de sites</option>
+          <option value="Site WEB STARTER">Site WEB STARTER</option>
+          <option value="Atendimento">Atendimento</option>
+          <option value="Outro">Outro</option>
+        </select>
+        <button id="submitBtn" class="submit" type="submit">Enviar avaliação →</button>
+        <div id="notice" class="notice" role="status" aria-live="polite"></div>
+        <p class="privacy">As avaliações enviadas ficam pendentes até serem aprovadas. Não coloque telefone, endereço, senha ou outras informações pessoais no comentário.</p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="reviews-head">
+        <div>
+          <h2>💬 O que estão dizendo</h2>
+          <p class="sub" style="margin:8px 0 0">Comentários aprovados pela administração.</p>
+        </div>
+        <span class="pill">AVALIAÇÕES REAIS</span>
+      </div>
+      <div id="reviews" class="review-list">
+        <div class="empty"><b>Carregando avaliações…</b>Estamos buscando os comentários publicados.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 WEB STARTER — Todos os direitos reservados.<br>Criado por <strong>Allyson da Silva Pantoja</strong></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Public publishable key: safe to use in the browser when RLS policies are configured.
+    const SUPABASE_URL = "https://arvxbujexeravebntfpn.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_PE5NcmRFqjJaxS5itBf5pw_QBQCkkyU";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+    const ratingWords = ["", "Ruim", "Regular", "Bom", "Muito bom", "Excelente"];
+    const stars = [...document.querySelectorAll(".star")];
+    const ratingInput = document.getElementById("rating");
+    const ratingCaption = document.getElementById("ratingCaption");
+    const form = document.getElementById("reviewForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const notice = document.getElementById("notice");
+    const reviewsBox = document.getElementById("reviews");
+    let currentRating = 0;
+
+    function setRating(value) {
+      currentRating = value;
+      ratingInput.value = String(value);
+      stars.forEach((star) => {
+        const active = Number(star.dataset.rating) <= value;
+        star.classList.toggle("active", active);
+        star.setAttribute("aria-checked", Number(star.dataset.rating) === value ? "true" : "false");
+      });
+      ratingCaption.textContent = `${value} de 5 estrelas — ${ratingWords[value]}`;
+    }
+    stars.forEach((star) => star.addEventListener("click", () => setRating(Number(star.dataset.rating))));
+
+    function showNotice(message, kind) {
+      notice.textContent = message;
+      notice.className = `notice show ${kind}`;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[char]);
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "";
+      return new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", year: "numeric" }).format(date);
+    }
+
+    async function loadReviews() {
+      reviewsBox.innerHTML = '<div class="empty"><b>Carregando avaliações…</b>Estamos buscando os comentários publicados.</div>';
+      const { data, error } = await supabaseClient
+        .from("avaliacoes")
+        .select("id,nome,estrelas,comentario,projeto,criado_em")
+        .eq("aprovado", true)
+        .order("criado_em", { ascending: false })
+        .limit(50);
+
+      if (error) {
+        document.getElementById("reviewCount").textContent = "—";
+        reviewsBox.innerHTML = '<div class="empty"><b>Não foi possível carregar as avaliações.</b>Confirme as configurações da tabela e as permissões de leitura no Supabase.</div>';
+        console.error("Erro ao carregar avaliações:", error);
+        return;
+      }
+
+      document.getElementById("reviewCount").textContent = data.length;
+      if (!data.length) {
+        reviewsBox.innerHTML = '<div class="empty"><b>Seja a primeira pessoa a avaliar!</b>Ainda não há comentários aprovados. As avaliações aparecerão aqui depois de serem aprovadas pela administração.</div>';
+        return;
+      }
+
+      reviewsBox.innerHTML = data.map((review) => `
+        <article class="review">
+          <div class="review-top">
+            <div>
+              <div class="review-name">${escapeHtml(review.nome)}</div>
+              <div class="review-date">${escapeHtml(formatDate(review.criado_em))}</div>
+            </div>
+            <div class="review-stars" aria-label="${Number(review.estrelas)} de 5 estrelas">${"★".repeat(Number(review.estrelas))}${"☆".repeat(5 - Number(review.estrelas))}</div>
+          </div>
+          <p class="review-comment">${escapeHtml(review.comentario)}</p>
+          ${review.projeto ? `<span class="review-project">${escapeHtml(review.projeto)}</span>` : ""}
+        </article>
+      `).join("");
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const nome = document.getElementById("name").value.trim();
+      const comentario = document.getElementById("comment").value.trim();
+      const projeto = document.getElementById("project").value || null;
+
+      if (currentRating < 1 || currentRating > 5) {
+        showNotice("Escolha uma nota de 1 a 5 estrelas antes de enviar.", "err");
+        return;
+      }
+      if (nome.length < 2 || comentario.length < 5) {
+        showNotice("Confira o nome e escreva um comentário com pelo menos 5 caracteres.", "err");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando…";
+      try {
+        const { error } = await supabaseClient.from("avaliacoes").insert([{
+          nome,
+          estrelas: currentRating,
+          comentario,
+          projeto,
+          aprovado: false
+        }]);
+        if (error) throw error;
+        form.reset();
+        currentRating = 0;
+        stars.forEach((star) => {
+          star.classList.remove("active");
+          star.setAttribute("aria-checked", "false");
+        });
+        ratingCaption.textContent = "Selecione sua nota.";
+        showNotice("Avaliação enviada! Ela ficará pendente até ser aprovada pela administração.", "ok");
+      } catch (error) {
+        console.error("Erro ao enviar avaliação:", error);
+        showNotice("Não foi possível enviar agora. Verifique as permissões da tabela avaliacoes no Supabase e tente novamente.", "err");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar avaliação →";
+      }
+    });
+
+    loadReviews();
+  </script>
+</body>
+</html>
