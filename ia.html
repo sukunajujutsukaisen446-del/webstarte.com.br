@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b18">
+<meta name="description" content="WebStarter AI: assistente gratuito para aprender HTML, CSS e JavaScript.">
+<title>WebStarter AI — Assistente de Programação</title>
+<style>
+:root{color-scheme:dark;--bg:#080b18;--panel:#111831;--line:#283252;--text:#f4f5ff;--muted:#a2acc9;--purple:#a58aff;--blue:#67a8ff;--cyan:#73eee0}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 10% 0%,#33216c88,transparent 38rem),radial-gradient(ellipse at 100% 20%,#163d6a66,transparent 34rem),var(--bg)}
+button,input{font:inherit}button{cursor:pointer}.shell{width:min(1160px,calc(100% - 32px));margin:auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.logo{display:grid;place-items:center;width:45px;height:45px;border-radius:15px;background:linear-gradient(140deg,#9b75ff,#4f83ff);box-shadow:0 8px 28px #7959ff44;font-size:22px}.brand b{display:block;font-size:15px;letter-spacing:.1em}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.15em;margin-top:4px}
+.header-right{display:flex;align-items:center;gap:10px}.status,.back{padding:10px 13px;border:1px solid var(--line);border-radius:12px;color:#dce3ff;text-decoration:none;font-size:12px}.status{border-radius:999px}.green{display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px #73eee0}
+.hero{text-align:center;padding:48px 0 28px}.tag{display:inline-block;padding:8px 13px;border:1px solid #a58aff44;border-radius:99px;background:#a58aff12;color:#d9ceff;font-size:11px;font-weight:800;letter-spacing:.08em}h1{font-size:clamp(32px,5vw,56px);line-height:1.08;letter-spacing:-.045em;margin:18px 0 12px}.gradient{color:transparent;background:linear-gradient(100deg,#c7b5ff,#7fc3ff,#79f0e2);background-clip:text;-webkit-background-clip:text}.hero p{max-width:650px;margin:auto;color:var(--muted);line-height:1.7;font-size:15px}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:20px;align-items:start;padding-bottom:45px}.side,.chat{border:1px solid var(--line);border-radius:22px;background:#111831d9;box-shadow:0 22px 65px #0003;overflow:hidden}.side{padding:20px}.side h2{font-size:13px;margin:0 0 9px}.muted{color:var(--muted);font-size:12px;line-height:1.6;margin:0 0 16px}.topics{display:grid;gap:8px}.topic{display:flex;align-items:center;gap:10px;text-align:left;width:100%;padding:11px;border:1px solid transparent;border-radius:13px;background:#ffffff06;color:#e5e9ff;transition:.2s}.topic:hover,.topic:focus-visible{outline:none;border-color:#a58aff66;background:#a58aff13;transform:translateY(-1px)}.ico{display:grid;place-items:center;width:35px;height:35px;border-radius:11px;background:#a58aff20;font-size:17px}.topic strong{display:block;font-size:12px}.topic small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.tip{margin-top:18px;padding:13px;border:1px solid #73eee027;border-radius:13px;background:#73eee008}.tip b{font-size:11px;color:#a8f6ed}.tip p{font-size:11px;line-height:1.55;color:var(--muted);margin:5px 0 0}
+.chat-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line);background:#ffffff04}.who{display:flex;align-items:center;gap:10px}.avatar{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#a58aff40,#67a8ff25);border:1px solid #a58aff44;font-size:21px}.who b{font-size:13px;display:block}.who small{font-size:10px;color:var(--muted);display:block;margin-top:4px}.clear{padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:transparent;color:#bfc9e7;font-size:11px}.messages{display:flex;flex-direction:column;gap:15px;min-height:360px;max-height:500px;overflow:auto;padding:20px;scrollbar-color:#3b4770 transparent}.msg{display:flex;gap:9px;max-width:92%;animation:up .2s ease-out}.msg.user{align-self:flex-end;flex-direction:row-reverse}.mini{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:9px;background:#222d4c;font-size:13px}.bubble{padding:12px 14px;border:1px solid var(--line);border-radius:4px 15px 15px 15px;background:#ffffff08;color:#e8ecff;font-size:12px;line-height:1.75;overflow-wrap:anywhere}.msg.user .bubble{border-radius:15px 4px 15px 15px;background:#477edc22;border-color:#67a8ff30}.bubble strong{color:#d1c3ff}.bubble code{padding:2px 5px;border-radius:5px;background:#050916;color:#8feee1;font-family:ui-monospace,Consolas,monospace}.bubble pre{overflow:auto;padding:12px;border-radius:10px;background:#070b17;border:1px solid var(--line);color:#9cf1e7;font-size:11px}.bubble pre code{padding:0;background:none}
+.suggestions{display:flex;flex-wrap:wrap;gap:7px;padding:0 20px 17px}.suggestion{padding:8px 10px;border:1px solid #a58aff40;border-radius:99px;color:#d8ccff;background:#a58aff0d;font-size:10px}.suggestion:hover{background:#a58aff24}.composer{padding:15px 17px 17px;border-top:1px solid var(--line);background:#060a1666}.input-wrap{display:flex;align-items:center;gap:8px;padding:6px;border:1px solid #53608366;border-radius:15px;background:#080d1d}.input-wrap:focus-within{border-color:#a58affaa;box-shadow:0 0 0 3px #a58aff14}#question{min-width:0;width:100%;padding:10px;color:white;border:0;outline:0;background:transparent;font-size:12px}#question::placeholder{color:#7e89a9}.send{width:42px;height:42px;flex:0 0 42px;border:0;border-radius:11px;color:white;background:linear-gradient(140deg,#a17aff,#568fff);font-size:18px}.hint{text-align:center;color:#7783a3;font-size:10px;line-height:1.5;margin:9px 0 0}footer{text-align:center;padding:0 0 24px;color:#7883a2;font-size:11px}
+@keyframes up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.side{order:2}.topics{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding-top:36px}}
+@media(max-width:500px){.shell{width:calc(100% - 20px)}header{padding:14px 0}.status{display:none}.back{font-size:11px;padding:9px}.brand b{font-size:13px}.hero{padding:32px 0 22px}.hero p{font-size:13px}.messages{padding:14px 10px;min-height:320px}.msg{max-width:100%}.suggestions{padding:0 12px 14px}.composer{padding:12px}.side{padding:15px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <a class="brand" href="index.html"><span class="logo">✦</span><span><b>WEBSTARTER</b><small>LABORATÓRIO DE CÓDIGO</small></span></a>
+  <div class="header-right"><span class="status"><i class="green"></i>Modo gratuito</span><a class="back" href="index.html">← Voltar ao site</a></div>
+</header>
+<section class="hero"><span class="tag">✧ SEU PARCEIRO DE PROGRAMAÇÃO</span><h1>Conheça a <span class="gradient">WebStarter AI</span></h1><p>Tire dúvidas, aprenda a criar sites e descubra HTML, CSS e JavaScript — um passo de cada vez.</p></section>
+<main class="layout">
+<aside class="side">
+  <h2>Explore os assuntos</h2><p class="muted">Escolha um tema para começar sua jornada.</p>
+  <div class="topics">
+    <button class="topic" data-q="O que é HTML? Me mostre um exemplo simples."><span class="ico">🌐</span><span><strong>HTML</strong><small>Estrutura da página</small></span></button>
+    <button class="topic" data-q="O que é CSS? Como mudar a cor de um título?"><span class="ico">🎨</span><span><strong>CSS</strong><small>Estilo e visual</small></span></button>
+    <button class="topic" data-q="Para que serve JavaScript?"><span class="ico">⚡</span><span><strong>JavaScript</strong><small>Interatividade</small></span></button>
+    <button class="topic" data-q="Como criar um link para outra página HTML?"><span class="ico">🔗</span><span><strong>Links e botões</strong><small>Navegação do site</small></span></button>
+    <button class="topic" data-q="Como deixar meu site responsivo para celular?"><span class="ico">📱</span><span><strong>Responsividade</strong><small>Celular e PC</small></span></button>
+    <button class="topic" data-q="Me dê um exercício fácil de HTML para praticar."><span class="ico">🧠</span><span><strong>Desafios</strong><small>Aprenda fazendo</small></span></button>
+  </div>
+  <div class="tip"><b>✦ Feito para aprender</b><p>Este modo gratuito usa respostas predefinidas. Não envia suas perguntas a um servidor e não precisa de chave de API.</p></div>
+</aside>
+<section class="chat" aria-label="Conversa com WebStarter AI">
+  <div class="chat-head"><div class="who"><span class="avatar">🤖</span><span><b>WebStarter AI</b><small>Assistente de estudos • gratuito</small></span></div><button id="clear" class="clear" type="button">↻ Nova conversa</button></div>
+  <div id="messages" class="messages" role="log" aria-live="polite"><div class="msg"><span class="mini">✦</span><div class="bubble">Olá, dev! 👋 Eu sou a <strong>WebStarter AI</strong>.<br><br>Posso ajudar com dúvidas básicas de HTML, CSS e JavaScript. Escolha uma sugestão ou escreva sua pergunta aqui embaixo!</div></div></div>
+  <div class="suggestions"><button class="suggestion" data-q="O que é HTML?">O que é HTML?</button><button class="suggestion" data-q="Como centralizar um elemento com CSS?">Centralizar com CSS</button><button class="suggestion" data-q="Como fazer um botão funcionar com JavaScript?">Botão com JavaScript</button><button class="suggestion" data-q="Me passe um desafio de programação para iniciante.">Me dê um desafio</button></div>
+  <form id="form" class="composer"><div class="input-wrap"><input id="question" maxlength="500" autocomplete="off" placeholder="Pergunte sobre programação..." aria-label="Digite sua pergunta" required><button class="send" type="submit" aria-label="Enviar pergunta">➤</button></div><p class="hint">Respostas predefinidas • Não digite senhas, chaves ou informações pessoais.</p></form>
+</section>
+</main>
+<footer>© <span id="year"></span> WebStarter • Criado para quem está começando a programar.</footer>
+</div>
+<script>
+const answers=[
+{keys:["html","estrutura","tag","titulo","título"],html:'HTML organiza o conteúdo de uma página: títulos, parágrafos, imagens e links.<pre><code>&lt;h1&gt;Meu primeiro site&lt;/h1&gt;\n&lt;p&gt;Estou aprendendo HTML!&lt;/p&gt;</code></pre>O navegador interpreta essas tags e mostra o conteúdo na tela.'},
+{keys:["css","cor","cores","estilo","fonte","visual"],html:'CSS controla a aparência do site, como cores, tamanhos, espaçamentos e posições.<pre><code>h1 {\n  color: #9b7bff;\n  font-size: 32px;\n}</code></pre>Esse exemplo deixa os títulos roxos.'},
+{keys:["javascript","java script","interatividade","interativo"],html:'JavaScript permite que a página reaja a ações, como cliques em botões.<pre><code>document.querySelector("button")\n  .addEventListener("click", () => {\n    alert("Olá, dev!");\n  });</code></pre>Você pode colocar esse código em uma tag &lt;script&gt;.'},
+{keys:["centralizar","centro"],html:'Para centralizar conteúdo com Flexbox, experimente:<pre><code>.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}</code></pre>O contêiner precisa ter espaço disponível para o alinhamento ficar visível.'},
+{keys:["botao","botão","clicar","clique"],html:'Crie o botão no HTML:<pre><code>&lt;button id="meuBotao"&gt;Clique aqui&lt;/button&gt;</code></pre>Depois adicione o clique com JavaScript:<pre><code>document.querySelector("#meuBotao")\n .addEventListener("click", () => alert("Funcionou!"));</code></pre>'},
+{keys:["link","href","outra pagina","outra página"],html:'Use a tag &lt;a&gt; para abrir outra página:<pre><code>&lt;a href="ia.html"&gt;Abrir WebStarter AI&lt;/a&gt;</code></pre>Se o arquivo estiver na mesma pasta, basta usar o nome dele.'},
+{keys:["imagem","foto","img"],html:'Para inserir uma imagem:<pre><code>&lt;img src="foto.jpg" alt="Descrição da foto"&gt;</code></pre>O arquivo precisa existir no caminho informado em src. O alt ajuda na acessibilidade.'},
+{keys:["responsivo","responsividade","celular","mobile"],html:'No &lt;head&gt;, inclua:<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>Depois use layouts flexíveis e media queries para adaptar a página a telas menores.'},
+{keys:["erro","bug","não funciona","nao funciona","problema"],html:'Vamos investigar! 🔎<br>1. Confira se salvou o arquivo.<br>2. Verifique nomes e caminhos.<br>3. Pressione <code>F12</code> no navegador e abra <strong>Console</strong> para ver erros. Você pode mandar a mensagem do erro, sem senhas ou chaves.'},
+{keys:["exercicio","exercício","desafio","praticar"],html:'Desafio de iniciante 🧠<br>Crie uma página com um título, um parágrafo sobre seu jogo favorito e um botão.<br><br>Dicas: use <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code> e <code>&lt;button&gt;</code>. Tente fazer sozinho primeiro!'},
+{keys:["oi","olá","ola","bom dia","boa tarde","boa noite","eai","e aí"],html:'Fala, dev! 😎 No que vamos mexer hoje: HTML, CSS ou JavaScript? Escolha um tema ou mande sua dúvida.'},
+{keys:["obrigado","obrigada","valeu","tmj"],html:'Tamo junto! 🚀 Continue praticando um pouquinho por dia. Se aparecer outra dúvida, manda aqui!'}
+];
+const box=document.querySelector("#messages"),input=document.querySelector("#question");
+function message(text,user=false,html=false){const row=document.createElement("div");row.className="msg"+(user?" user":"");const icon=document.createElement("span");icon.className="mini";icon.textContent=user?"🙂":"✦";const bubble=document.createElement("div");bubble.className="bubble";if(html)bubble.innerHTML=text;else bubble.textContent=text;row.append(icon,bubble);box.append(row);box.scrollTop=box.scrollHeight}
+function ask(q){q=q.trim();if(!q)return;message(q,true);const normalized=" "+q.toLocaleLowerCase("pt-BR").normalize("NFD").replace(/[\u0300-\u036f]/g,"")+" ";const found=answers.find(a=>a.keys.some(k=>normalized.includes(k.normalize("NFD").replace(/[\u0300-\u036f]/g,""))));const reply=found?found.html:'Boa pergunta! 👀 Ainda não tenho uma resposta pronta para esse assunto. Tente perguntar sobre <strong>HTML, CSS, JavaScript, links, imagens, responsividade ou erros de código</strong>.<br><br>Este modo gratuito usa respostas predefinidas, então não consegue analisar qualquer pergunta como uma IA generativa.';message(reply,false,true);input.value="";input.focus()}
+document.querySelector("#form").addEventListener("submit",e=>{e.preventDefault();ask(input.value)});
+document.querySelectorAll("[data-q]").forEach(b=>b.addEventListener("click",()=>ask(b.dataset.q)));
+document.querySelector("#clear").addEventListener("click",()=>{box.replaceChildren();message("Conversa reiniciada! 👋 Sou a WebStarter AI. Pergunte sobre HTML, CSS ou JavaScript e vamos aprender juntos.");input.focus()});
+document.querySelector("#year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
