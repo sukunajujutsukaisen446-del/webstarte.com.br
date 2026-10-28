@@ -1409,30 +1409,220 @@ VÍDEO INSTITUCIONAL
        SUCESSO
   ========================= -->
 
-  <div id="successPage" class="page">
+  <style>
+/* ===== WEB STARTER | BOTÃO DE ELITE ===== */
 
-    <div class="success">
+.ws-buy-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-      <div class="success-icon">
-        🎉
-      </div>
+.ws-buy-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 21px 35px;
+    min-width: 280px;
+    overflow: hidden;
+    isolation: isolate;
 
-      <h1>
-        Compra concluída!
-      </h1>
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
 
-      <p>
-        Parabéns! Seu acesso ao WEB STARTER foi confirmado.
-      </p>
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
 
-      <button class="primary-btn" onclick="goHome()">
-        VOLTAR PARA O INÍCIO
-      </button>
+    background: linear-gradient(
+        110deg,
+        #681cff,
+        #3825ff,
+        #00aaff,
+        #681cff
+    );
+    background-size: 300% 100%;
 
-    </div>
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 18px;
 
-  </div>
+    box-shadow:
+        0 0 15px rgba(104,28,255,.65),
+        0 0 35px rgba(0,170,255,.30),
+        inset 0 1px 0 rgba(255,255,255,.35);
 
+    animation:
+        ws-gradient 5s linear infinite,
+        ws-pulse 2.2s ease-in-out infinite;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+/* Brilho passando pelo botão */
+.ws-buy-button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -80%;
+    width: 45%;
+    height: 200%;
+    z-index: -1;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.65),
+        transparent
+    );
+
+    transform: rotate(25deg);
+    animation: ws-shine 3.5s ease-in-out infinite;
+}
+
+/* Efeito de aura */
+.ws-buy-button::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 20px;
+    border: 2px solid rgba(0,190,255,.5);
+    opacity: 0;
+    z-index: -2;
+    animation: ws-aura 2.2s ease-out infinite;
+}
+
+.ws-buy-button:hover {
+    transform: translateY(-5px) scale(1.045);
+
+    box-shadow:
+        0 0 22px rgba(104,28,255,.9),
+        0 0 55px rgba(0,170,255,.65),
+        0 12px 35px rgba(0,0,0,.35);
+}
+
+.ws-buy-button:active {
+    transform: scale(.97);
+}
+
+.ws-buy-icon {
+    font-size: 25px;
+    display: inline-block;
+    animation: ws-ball 2s ease-in-out infinite;
+}
+
+.ws-buy-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ws-buy-title {
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.ws-buy-price {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #d9f5ff;
+}
+
+/* Animações */
+@keyframes ws-gradient {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+@keyframes ws-pulse {
+    0%, 100% {
+        box-shadow:
+            0 0 15px rgba(104,28,255,.55),
+            0 0 30px rgba(0,170,255,.25);
+    }
+    50% {
+        box-shadow:
+            0 0 24px rgba(104,28,255,.9),
+            0 0 48px rgba(0,170,255,.55);
+    }
+}
+
+@keyframes ws-shine {
+    0%, 20% { left: -80%; }
+    60%, 100% { left: 140%; }
+}
+
+@keyframes ws-aura {
+    0%   { transform: scale(1); opacity: .6; }
+    100% { transform: scale(1.12); opacity: 0; }
+}
+
+@keyframes ws-ball {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50% { transform: rotate(8deg) translateY(-3px); }
+}
+
+/* Celular */
+@media (max-width: 480px) {
+    .ws-buy-button {
+        width: 100%;
+        max-width: 340px;
+        min-width: 0;
+        padding: 19px 15px;
+        font-size: 14px;
+    }
+
+    .ws-buy-title {
+        font-size: 14px;
+    }
+}
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+    .ws-buy-button,
+    .ws-buy-button::before,
+    .ws-buy-button::after,
+    .ws-buy-icon {
+        animation: none;
+    }
+
+    .ws-buy-button {
+        transition: none;
+    }
+}
+</style>
+
+<div class="ws-buy-container">
+    <a
+        class="ws-buy-button"
+        href="https://pay.hotmart.com/Q107545756U"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Comprar o minicurso Web Starter por R$ 29,90"
+    >
+        <span class="ws-buy-icon" aria-hidden="true">⚽</span>
+
+        <span class="ws-buy-text">
+            <span class="ws-buy-title">
+                QUERO APRENDER A CRIAR SITES
+            </span>
+
+            <span class="ws-buy-price">
+                GARANTA SEU ACESSO • R$ 29,90
+            </span>
+        </span>
+
+        <span aria-hidden="true">➜</span>
+    </a>
+</div>
 
   <script>
 
