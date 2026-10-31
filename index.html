@@ -1822,7 +1822,152 @@ function logoutGoogle() {
     <small>Nosso servidor no Discord</small>
   </span>
 </a>
+<style>
+/* HALLOWEEN MAGICO 3D — BLOCO INDEPENDENTE */
+.ws-halloween-area {
+    display: flex;
+    justify-content: center;
+    padding: 45px 18px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
 
+.ws-halloween-button {
+    --orange: #ff791c;
+    --purple: #7c22ff;
+
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+
+    max-width: 100%;
+    padding: 22px 32px;
+    border: 2px solid #ffb36b;
+    border-radius: 20px;
+
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+
+    background:
+        radial-gradient(ellipse at top, #60219b 0%, transparent 70%),
+        linear-gradient(135deg, #30104f, #15051f 75%);
+
+    box-shadow:
+        0 8px 0 #390b5b,
+        0 13px 0 #1b062b,
+        0 18px 35px rgba(0,0,0,.55),
+        0 0 22px rgba(255,121,28,.45),
+        inset 0 2px 0 rgba(255,255,255,.25);
+
+    transform: translateY(0);
+    transition: transform .22s ease, box-shadow .22s ease;
+    isolation: isolate;
+    overflow: hidden;
+    animation: ws-halloween-glow 3s ease-in-out infinite;
+}
+
+.ws-halloween-button::before {
+    content: "";
+    position: absolute;
+    inset: -80% -40%;
+    z-index: -1;
+    background: linear-gradient(
+        110deg,
+        transparent 42%,
+        rgba(255,255,255,.28) 50%,
+        transparent 58%
+    );
+    transform: translateX(-65%) rotate(12deg);
+    animation: ws-halloween-shine 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.ws-halloween-button:hover {
+    transform: translateY(-5px) scale(1.035);
+    box-shadow:
+        0 12px 0 #390b5b,
+        0 17px 0 #1b062b,
+        0 25px 45px rgba(0,0,0,.5),
+        0 0 35px rgba(255,121,28,.8),
+        0 0 55px rgba(124,34,255,.55),
+        inset 0 2px 0 rgba(255,255,255,.35);
+}
+
+.ws-halloween-button:active {
+    transform: translateY(7px) scale(.98);
+    box-shadow:
+        0 2px 0 #390b5b,
+        0 4px 15px rgba(0,0,0,.4),
+        inset 0 3px 8px rgba(0,0,0,.35);
+}
+
+.ws-halloween-icon {
+    font-size: 35px;
+    line-height: 1.2;
+    filter: drop-shadow(0 0 10px rgba(255,121,28,.8));
+}
+
+.ws-halloween-title {
+    font-size: clamp(16px, 4vw, 21px);
+    font-weight: 900;
+    letter-spacing: .5px;
+    text-shadow: 0 0 12px rgba(255,121,28,.6);
+}
+
+.ws-halloween-subtitle {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffbd85;
+}
+
+@keyframes ws-halloween-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 3px rgba(255,121,28,.15));
+    }
+    50% {
+        filter: drop-shadow(0 0 9px rgba(124,34,255,.4));
+    }
+}
+
+@keyframes ws-halloween-shine {
+    0%, 65% { transform: translateX(-65%) rotate(12deg); }
+    90%, 100% { transform: translateX(65%) rotate(12deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ws-halloween-button,
+    .ws-halloween-button::before {
+        animation: none;
+        transition: none;
+    }
+}
+</style>
+
+<div class="ws-halloween-area">
+    <a
+        class="ws-halloween-button"
+        href="https://sukunajujutsukaisen446-del.github.io/feitico-leve/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Acessar o site Feitiço Leve"
+    >
+        <span class="ws-halloween-icon" aria-hidden="true">🎃🦇</span>
+
+        <span class="ws-halloween-title">
+            ACESSE MEU SITE TAMBÉM!
+        </span>
+
+        <span class="ws-halloween-subtitle">
+            ✨ E-BOOKS • CONTEÚDO EXCLUSIVO ✨
+        </span>
+
+        <span aria-hidden="true">🧙‍♂️ ➜</span>
+    </a>
+</div>
 </body>
 </html>
 WEB_STARTER_GOOGLE.html
